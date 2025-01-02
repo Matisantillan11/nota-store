@@ -1,6 +1,6 @@
 import { SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 
-export default function CartDrawerDesktop() {
+export default function CartDrawer() {
 	return (
 		<SheetContent>
 			<SheetHeader className='my-8'>
