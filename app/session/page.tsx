@@ -6,27 +6,29 @@ import { useCallback, useEffect } from 'react'
 import { toast } from 'sonner'
 
 export default function SessionHandler() {
-	const fragment = window.location.hash.substring(1)
-	const params = new URLSearchParams(fragment)
-
-	const accessToken = params?.get('access_token')
-	const refreshToken = params?.get('refresh_token')
-
 	const handleSupabaseSession = useCallback(async () => {
-		if (!accessToken || !refreshToken) {
-			toast.error('No pudimos iniciar sesión, por favor intenta de nuevo más tarde.')
+		if (window !== undefined) {
+			const fragment = window.location.hash.substring(1)
+			const params = new URLSearchParams(fragment)
+
+			const accessToken = params?.get('access_token')
+			const refreshToken = params?.get('refresh_token')
+
+			if (!accessToken || !refreshToken) {
+				toast.error('No pudimos iniciar sesión, por favor intenta de nuevo más tarde.')
+			}
+
+			const supabase = await createSupabaseClient()
+			supabase.auth.setSession({
+				access_token: accessToken as string,
+				refresh_token: refreshToken as string,
+			})
+
+			redirect('/')
 		}
-
-		const supabase = await createSupabaseClient()
-		supabase.auth.setSession({
-			access_token: accessToken as string,
-			refresh_token: refreshToken as string,
-		})
-
-		redirect('/')
-	}, [accessToken, refreshToken])
+	}, [])
 
 	useEffect(() => {
 		handleSupabaseSession()
-	}, [handleSupabaseSession])
+	})
 }
