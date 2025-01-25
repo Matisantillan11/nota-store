@@ -1,7 +1,7 @@
 import BuyButton from '@/components/buy-button'
 import Render3d from '@/components/render-3d'
 
-export default function Home() {
+export default async function Home() {
 	return (
 		<div className='w-full h-full md:px-16 lg:px-36 flex flex-col items-center justify-between lg:grid lg:grid-cols-12 md:gap-10 py-6 md:py-14 lg:py-24'>
 			<div className='col-span-7 flex flex-col items-center lg:items-start py-6 md:py-14 lg:py-16'>

@@ -12,7 +12,7 @@ interface CartButtonProps {
 export default function CartButton({ children }: CartButtonProps) {
 	return (
 		<Sheet>
-			<SheetTrigger asChild>
+			<SheetTrigger asChild className='hover:cursor-pointer'>
 				<ShoppingBag size={24} color={theme.white} />
 			</SheetTrigger>
 
