@@ -10,9 +10,6 @@ async function signInWithGoogle() {
 	if (!session) {
 		const { error } = await supabase.auth.signInWithOAuth({
 			provider: 'google',
-			options: {
-				redirectTo: 'http://localhost:3000/auth/v1/callback',
-			},
 		})
 
 		if (error) {
